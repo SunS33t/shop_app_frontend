@@ -1,5 +1,6 @@
 import { ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { StringMapWithRename } from '@angular/compiler/src/compiler_facade_interface';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -11,13 +12,23 @@ import { map, Observable, startWith } from 'rxjs';
   styleUrls: ['./shop-add-edit.component.css']
 })
 export class ShopAddEditComponent implements OnInit {
+  shopList$!: Observable<any[]>;
+  adressList$!: Observable<any>;
+  adressLists: any = [];
+
+
   separatorKeysCodes: number[] = [ENTER];  // *Клавиши для добавления нового значения
   fruitCtrl = new FormControl();    // * Форма с инпутом для текста
   filteredFruits: Observable<string[]>;  //* Отфильтрованный дроп лист с учетом значения в formCtrl
   fruits: string[] = [];  //* Список значений чипсов
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];  //* Список всех возможных значений
 
+
+  @Input() shop: any;
+  shopName:string="";
+  
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+
 
   constructor() {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
@@ -28,6 +39,14 @@ export class ShopAddEditComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  addShop(){
+
+  }
+
+  updateShop(){
+
   }
 
   add(event: MatChipInputEvent): void {
