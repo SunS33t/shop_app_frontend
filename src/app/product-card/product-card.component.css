@@ -1,0 +1,32 @@
+.example-card {
+    min-width: 400px;
+    margin-bottom: 20px;
+    max-height: 500px;
+}
+
+.example-card p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 20px;
+}
+
+.mat-card-image {
+  max-height: 300px;
+  width: auto;
+  margin: 0 auto;
+}
+
+.card-logo {
+  max-width: 50px;
+}
+
+.btn { 
+  margin-left: 10px;
+}
+
+.product-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}

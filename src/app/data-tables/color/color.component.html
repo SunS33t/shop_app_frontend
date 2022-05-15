@@ -1,0 +1,64 @@
+
+<div class="container-lg wrapper ">
+    <button type="button" class="btn btn-primary float-end m-2 add-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+    (click)="modalAdd()">
+      Добавить
+    </button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="colorName">
+      <th mat-header-cell *matHeaderCellDef>Название</th>
+      <td mat-cell *matCellDef="let element">{{element.colorName}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="colorHex">
+      <th mat-header-cell *matHeaderCellDef>Код цвета</th>
+      <td mat-cell *matCellDef="let element">#{{element.colorHex}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="preview">
+        <th mat-header-cell *matHeaderCellDef>Предпросмотр</th>
+        <td mat-cell *matCellDef="let element"><div class="color-container" style="background-color:#{{element.colorHex}}" ></div></td>
+      </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Действие</th>
+        <td mat-cell *matCellDef="let element">
+            <button class="btn btn-warning change-btn"
+            (click)="modalEdit(element)" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Изменить</button>
+            <button class="btn btn-danger delete-btn"
+            (click)="delete(element)">Удалить</button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div class="alert alert-success" role="alert" id="add-success-alert">
+    Цвет успешно добавлен!
+</div>
+  
+<div class="alert alert-success" role="alert" id="update-success-alert">
+    Информация о цвете обновлена!
+</div>
+  
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+    Информация о цвете удалена!
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" 
+tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="modalClose()" id="add-edit-modal-close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <app-color-add-edit [color]="color" *ngIf="activateAddEditComponent"></app-color-add-edit>
+        </div>
+    </div>
+</div>
+</div>

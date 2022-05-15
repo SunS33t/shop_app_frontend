@@ -1,0 +1,10 @@
+a{
+    text-decoration: none;
+}
+
+.mat-tab-label-active {
+    color: rgb(200, 101, 225) !important;
+}
+a:hover{
+    color: rgb(109, 56, 122) !important;
+}

@@ -1,0 +1,29 @@
+<form>
+    <div class="mb-3">
+        <label for="city" class="form-label">Город</label>
+        <input type="text" class="form-control" name="city" [(ngModel)]="city" >
+      </div>
+
+    <div class="mb-3">
+      <label for="street" class="form-label">Улица</label>
+      <input type="text" class="form-control" name="street" [(ngModel)]="street" >
+    </div>
+
+    <div class="mb-3">
+      <label for="homeNumber" class="form-label">Номер дома</label>
+      <input type="text" class="form-control" [(ngModel)]="homeNumber" name="homeNumber">
+    </div>
+
+    <div class="mb-3">
+        <label for="additionalInformation" class="form-label">Дополнительная информация</label>
+        <input type="text" class="form-control" [(ngModel)]="additionalInformation" name="additionalInformation">
+    </div>
+
+
+    <button (click)="addAdress()" *ngIf="adress.adressId==''" class="btn btn-primary">
+      Добавить
+    </button>
+    <button (click)="updateAdress()" *ngIf="adress.adressId!=''" class="btn btn-primary">
+      Изменить
+    </button>
+</form>

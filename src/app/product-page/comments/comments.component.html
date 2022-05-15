@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row bootstrap snippets bootdeys" >
+        <div class="col-md-8 col-sm-12">
+            <div class="comment-wrapper">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Комментарии
+                    </div>
+                    <div class="panel-body">
+                        <div class="fixed">
+                        <textarea class="form-control" placeholder="напишите свой отзыв..." [(ngModel)] = "comment" rows="3"></textarea>
+                        <div class="rating">
+                            <input type="radio" (change)="setMark($event)" name="rating" value="5" id="5"><label for="5">☆</label>
+                            <input type="radio" (change)="setMark($event)" name="rating" value="4" id="4"><label for="4">☆</label>
+                            <input type="radio" (change)="setMark($event)" name="rating" value="3" id="3"><label for="3">☆</label>
+                            <input type="radio" (change)="setMark($event)" name="rating" value="2" id="2"><label for="2">☆</label>
+                            <input type="radio" (change)="setMark($event)" name="rating" value="1" id="1"><label for="1">☆</label>
+                          </div>
+                        <br>
+                        <button type="button" class="btn btn-info pull-right" (click)="this.sendComment()">Отправить</button>
+                        </div>  
+                        <div class="clearfix"></div>
+                        <hr>
+                        <ng-template [ngIf]="(commentList$ | async)?.length > 0" [ngIfElse]="noComments"> 
+                        <ul class="media-list">
+                            <li class="media" *ngFor="let comment of commentList$ | async">
+                                <a href="#" class="pull-left">
+                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                </a>
+                                <div class="media-body">
+                                    <span *ngIf="comment.userId == this.userId" class="text-muted pull-right" (click)="this.deleteComment(comment.commentId)">
+                                        <small class="text-muted">Удалить</small>
+                                    </span>
+                                    <strong class="text-success">@{{customerMap.get(comment.userId)}}</strong>
+                                    <p>
+                                        {{comment.commentText}}
+                                    </p>
+                                    <span class="mark" *ngIf="comment.mark">Оценка: {{comment.mark}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </ng-template>
+                    <ng-template #noComments>
+                        <div>Комментариев к данному товару пока нет
+                        </div>
+                    </ng-template>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    </div>

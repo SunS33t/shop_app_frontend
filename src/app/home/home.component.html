@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand text-white">Puzzle Stash</a>
+    <div class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+        <li *ngIf="checkAdminRole()" class="nav-item" > <a class="nav-link" routerLink="admin-panel">Панель Администратора</a> </li>
+        <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link" routerLink="catalog">Каталог</a></li>
+        <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link" routerLink="cart">Корзина</a></li>
+        <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link" routerLink="catalog">Мои заказы</a></li>
+    </ul> 
+</div>
+<p class="navbar-text text-white user-hello" *ngIf="userDetails">Привет, {{userDetails.userName}} </p>
+<button class="btn btn-danger navbar-rigth" (click)="onLogout()">Выход</button>
+</nav>
+
+<router-outlet></router-outlet>

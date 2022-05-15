@@ -1,0 +1,68 @@
+<form>
+ <!-- Картинка -->
+    <div class="mb-3" *ngIf=!this.picture>
+      <label for="picture" class="form-label">Картинка</label>
+      <input type="file" class="form-control" name="picture" (change)="onSelectFile($event)" >
+    </div>
+    <div class="mb-3" *ngIf=this.picture>
+      <img src="data:image/jpg;base64,{{picture}}" height="100px">
+    </div>
+    <button class="btn btn-info" (click)="deleteImage()">Удалить изображение</button>
+ <!-- Название -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Название</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="name" >
+    </div>
+ <!-- Тип -->
+    <div class="mb-3">
+      <label for="type" class="form-label">Тип</label>
+      <input type="text" class="form-control" [(ngModel)]="type" name="type">
+    </div>
+ <!-- Стоимость -->
+    <div class="mb-3">
+        <label for="cost" class="form-label">Стоимость</label>
+        <input type="text" class="form-control" [(ngModel)]="cost" name="cost">
+    </div>
+    <!-- Размер -->
+    <div class="mb-3">
+        <label for="size" class="form-label">Размер</label>
+        <input type="text" class="form-control" [(ngModel)]="size" name="size">
+    </div>
+    <!-- Описание -->
+    <div class="mb-3">
+        <label for="description" class="form-label">Описание</label>
+        <input type="text" class="form-control" [(ngModel)]="description" name="description">
+    </div>
+    <!-- Вес -->
+    <div class="mb-3">
+        <label for="weight" class="form-label">Вес</label>
+        <input type="text" class="form-control" [(ngModel)]="weight" name="weight">
+    </div>
+    <!-- Сложность -->
+    <div class="mb-3">
+        <label for="difficulty" class="form-label">Сложность</label>
+        <input type="text" class="form-control" [(ngModel)]="difficulty" name="difficulty">
+    </div>
+    <!-- Производитель -->
+    <div class="mb-3">
+        <label for="manufacturerId" class="form-label">Производитель</label>
+        <select name="manufacturerId" id="manufacturerId" class="form-control select" [(ngModel)]="manufacturerId">
+            <option *ngFor="let manufacturer of manufacturerList$|async" [value]="manufacturer.manufacturerId">{{manufacturer.brandName}}</option>
+        </select>
+    </div>
+    <!-- Цвет пластика -->
+    <div class="mb-3">
+        <label for="colorLists" class="form-label">Цвет пластика</label>
+        <select name="colorLists" id="colorLists" class="form-control" [(ngModel)]="colorLists" multiple>
+            <option *ngFor="let color of colorList$|async" [value]="color.colorCode">{{color.colorName}}</option>
+        </select>
+        
+    </div>
+
+    <button (click)="addProduct()" *ngIf="product.productId==''" class="btn btn-primary">
+      Добавить
+    </button>
+    <button (click)="updateProduct()" *ngIf="product.productId!=''" class="btn btn-primary">
+      Изменить
+    </button>
+</form>

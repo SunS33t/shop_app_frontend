@@ -1,6 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 body{
-    background-color: #04c582;;
+    background-color: #fff;
 }
 
 input.form-control,input.form-control:focus{
@@ -93,3 +93,10 @@ div.form-group.required>label:first-child:after{
     text-transform: uppercase;
     font-size: 0.9rem;
  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-elevation-z8 { 
+    box-shadow: none !important;
+}

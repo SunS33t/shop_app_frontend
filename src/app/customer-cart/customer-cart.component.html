@@ -1,0 +1,35 @@
+<div class="CartContainer">
+    <div class="Header">
+        <h3 class="Heading">Корзина</h3>
+    </div>
+
+    <div *ngFor="let product of this.cart" class="Cart-Items">
+          <div class="image-box">
+              <img src="data:image/jpg;base64,{{product.picture}}" height="120px"  />
+          </div>
+          <div class="about">
+              <h1 class="title">{{product.name}}</h1>
+              <h3 class="subtitle">{{product.type}}</h3>
+          </div>
+          <div class="counter">
+              <div class="btn" (click)="this.minusProduct(product.productId)">-</div>
+              <div class="count">{{this.productCounts.get(product.productId)}}</div>
+              <div class="btn" (click)="this.plusProduct(product.productId)">+</div>
+          </div>
+          <div class="prices">
+              <div class="amount">{{product.cost}} у.е.</div>
+              <div class="remove" (click)="this.removeFromCart(product.productId)">Удалить из корзины</div>
+          </div>
+    </div>
+  <div class="checkout">
+  <div class="total">
+      <div>
+          <div class="Subtotal">Всего</div>
+          <div class="items">{{getSumCount()}}</div>
+      </div>
+      <div class="total-amount">{{getSumPrice()}} у.е.</div>
+  </div>
+  <button class="button">Оформить заказ</button></div>
+</div>
+
+

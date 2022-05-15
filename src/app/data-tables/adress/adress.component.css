@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+}
+
+.change-btn, .delete-btn{
+    margin-right: 15px;
+}
+
+.add-btn{
+    margin-bottom: 15px;
+}
+
+.container-lg{
+    flex-direction: column;
+    align-items: flex-end !important;
+}
+
+#add-success-alert,
+#update-success-alert,
+#delete-success-alert {
+  display: none;
+}
+
+#add-success-alert,
+#update-success-alert,
+#delete-success-alert {
+  animation-name: fadeInAndOut;
+  animation-duration: 4s;
+}
+
+@-webkit-keyframes fadeInAndOut {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeInAndOut {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}

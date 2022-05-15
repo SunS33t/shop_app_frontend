@@ -1,0 +1,16 @@
+<form>
+    <div class="mb-3">
+      <label for="colorHex" class="form-label">Код цвета</label>
+      <input type="text" class="form-control" name="colorHex" [(ngModel)]="colorHex" >
+    </div>
+    <div class="mb-3">
+      <label for="colorName" class="form-label">Название</label>
+      <input type="text" class="form-control" name="colorName" [(ngModel)]="colorName" >
+    </div>
+    <button (click)="addColor()" *ngIf="color.colorCode==''" class="btn btn-primary">
+      Добавить
+    </button>
+    <button (click)="updateColor()" *ngIf="color.colorCode!=''" class="btn btn-primary">
+      Изменить
+    </button>
+  </form>

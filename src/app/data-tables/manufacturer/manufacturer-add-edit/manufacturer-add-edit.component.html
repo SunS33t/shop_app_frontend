@@ -1,0 +1,23 @@
+<form>
+    <div *ngIf="!this.brandLogo" class="mb-3">
+      <label for="brandLogo" class="form-label">Логотип</label>
+      <input type="file" class="form-control" name="brandLogo" (change)="onSelectFile($event)" >
+      
+    </div>
+    <img *ngIf="this.brandLogo" src="data:image/jpg;base64,{{this.brandLogo}}" height="50px" width="50px">
+    <button class="btn btn-info" (click)="deleteImage()">Удалить изображение</button>
+    <div class="mb-3">
+      <label for="brandName" class="form-label">Название</label>
+      <input type="text" class="form-control" name="brandName" [(ngModel)]="brandName" >
+    </div>
+    <div class="mb-3">
+      <label for="country" class="form-label">Страна</label>
+      <input type="text" class="form-control" [(ngModel)]="country" name="country">
+    </div>
+    <button (click)="addManufacturer()" *ngIf="manufacturer.manufacturerId==''" class="btn btn-primary">
+      Добавить
+    </button>
+    <button (click)="updateManufacturer()" *ngIf="manufacturer.manufacturerId!=''" class="btn btn-primary">
+      Изменить
+    </button>
+</form>
