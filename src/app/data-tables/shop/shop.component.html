@@ -16,7 +16,11 @@
   
     <ng-container matColumnDef="availability">
       <th mat-header-cell *matHeaderCellDef>Наличие товаров</th>
-      <td mat-cell *matCellDef="let element"></td>
+      <td mat-cell *matCellDef="let element">
+        <div *ngFor="let item of element.productLists">
+        {{this.productMap.get(item.productId)}}: {{item.count}}
+      </div>
+    </td>
     </ng-container>
 
     <ng-container matColumnDef="action">

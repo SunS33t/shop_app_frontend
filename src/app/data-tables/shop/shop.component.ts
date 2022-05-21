@@ -13,12 +13,14 @@ export class ShopComponent {
   shopList$!: Observable<any[]>;
   adressList$!: Observable<any[]>;
   adressList:any = [];
+  productList:any = [];
   displayedColumns: string[] = ['name','adress','availability','action'];
   shop: any;
   modalTitle = "";
   activateAddEditComponent:boolean = false;
 
   adressMap: Map<string, string> = new Map();
+  productMap: Map<string, string> = new Map();
 
   dataSource = new MatTableDataSource<any>();
 
@@ -26,11 +28,13 @@ export class ShopComponent {
 
   ngOnInit(): void {
     this.shopList$ = this.service.getShopList();
+    this.shopList$.subscribe();
     this.adressList$ = this.service.getAdressList();
     this.shopList$.subscribe(items=> {
       this.dataSource.data = items;
     })
     this.refreshAdressMap();
+    this.refreshProductMap();
   }
 
   modalAdd(){
@@ -50,8 +54,8 @@ export class ShopComponent {
   }
 
   delete(element:any){
-    if(confirm(`Вы уверены, что хотите удалить магазин "${element.name}"?`)){
-      this.service.deleteShop(element.productId).subscribe(res=>{
+    if(confirm(`Вы уверены, что хотите удалить магазин "${element.shopName}"?`)){
+      this.service.deleteShop(element.shopId).subscribe(res=>{
       var showDeleteSuccess = document.getElementById('delete-success-alert');
       if(showDeleteSuccess) {
         showDeleteSuccess.style.display = "block";
@@ -83,6 +87,16 @@ export class ShopComponent {
       for(let i = 0; i < data.length; i++){
         this.adressMap.set(this.adressList[i].adressId,
           this.adressList[i].city + ' ' + this.adressList[i].street + ' '  + ' ' + this.adressList[i].homeNumber);
+      }
+    });
+  }
+
+  refreshProductMap(){
+    this.service.getProductList().subscribe(data=>{
+      this.productList = data;
+      for(let i = 0; i < data.length; i++){
+        this.productMap.set(this.productList[i].productId,
+          this.productList[i].name);
       }
     });
   }

@@ -204,4 +204,10 @@ export class ApiService {
     return this.http.delete(this.APIUrl + `/shops/${id}`);
   }
   //END SHOPS
+
+  //SHOP PRODUCTS
+  addProductToShop(data: any){
+    return this.http.post(this.APIUrl + '/productlists',data);
+  }
+  //END SHOP PRODUCTS
 }

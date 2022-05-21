@@ -4,38 +4,38 @@
        <label for="shopName" class="form-label">Название</label>
        <input type="text" class="form-control" name="shopName" [(ngModel)]="shopName" >
      </div>
-     <!-- Цвет пластика -->
+     <!-- Адррес -->
      <div class="mb-3">
-         <label for="adressLists" class="form-label">Адрес</label>
-         <select name="adressLists" id="adressLists" class="form-control" [(ngModel)]="adressLists" multiple>
-             <option *ngFor="let adress of adressList$|async" [value]="adress.adressId">{{adress.adressID}}</option>
-         </select>         
+         <label for="adressId" class="form-label">Адрес</label>
+         <mat-select name="adressId" id="adressId" class="form-control" [(ngModel)]="adressId">
+             <mat-option *ngFor="let adress of adressList$ | async" [value]="adress.adressId">{{adress.city}},{{adress.street}} - {{adress.homeNumber}}</mat-option>
+         </mat-select>         
      </div>
      <!--Ассортимент-->
      <div class="mb-3">
       <mat-form-field class="example-chip-list" appearance="fill">
         <mat-label>Ассортимент</mat-label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip-list #chipList aria-label="Выбор товаров">
           <mat-chip
-            *ngFor="let fruit of fruits"
-            (removed)="remove(fruit)">
-            {{fruit}} <input type="number" id="quantity" name="quantity" min="1" max="100" style="margin-left:20px" >
+            *ngFor="let product of selectedProducts"
+            (removed)="remove(product.product)"> 
+            {{product.product.name}} <input type="number" id="quantity" name="quantity" min="0" max="100" style="margin-left:20px" [(ngModel)]="product.count" [ngModelOptions]="{standalone: true}">
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip>
           <input
-            placeholder="New fruit..."
+            placeholder="Добавить товар..."
             #fruitInput
-            [formControl]="fruitCtrl"
+            [formControl]="productCtrl"
             [matAutocomplete]="auto"
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             (matChipInputTokenEnd)="add($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-            {{fruit}}
+          <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
+            {{product.name}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -49,23 +49,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let fruit of fruits; let i = index">
+            <tr *ngFor="let product of selectedProducts; let i = index">
                 <td>
-                  <div>{{fruit}}</div>
+                  <div>{{product.product.name}}</div>
                 </td>
                 <td>
-    
+                  <div>{{product.count}}</div>
                 </td>
                 <td>
-                  <mat-form-field appearance="fill" class="example-form-field">
-                  <mat-label>Choose a date</mat-label>
-                  <input matInput [matDatepicker]="datepicker">
+                  <mat-form-field appearance="fill" class="example-form-field" *ngIf="product.count ==0 ">
+                  <mat-label>Выберите дату поставки</mat-label>
+                  <input matInput [matDatepicker]="datepicker" [(ngModel)]="product.date" [ngModelOptions]="{standalone: true}">
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                   <mat-datepicker #datepicker>
                     <mat-datepicker-actions>
                       <button mat-button matDatepickerCancel>Cancel</button>
-                      <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                      <button mat-raised-button color="primary" matDatepickerApply>Применить</button>
                     </mat-datepicker-actions>
                   </mat-datepicker>
                 </mat-form-field>
@@ -75,7 +75,7 @@
     
      </div>
  
-     <button (click)="addShop()" *ngIf="shop.shopId==''" class="btn btn-primary">
+     <button  (click)="addShop()" *ngIf="shop.shopId==''" class="btn btn-primary">
        Добавить
      </button>
      <button (click)="updateShop()" *ngIf="shop.shopId!=''" class="btn btn-primary">
