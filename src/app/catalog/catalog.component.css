@@ -6,3 +6,9 @@
     justify-content: space-evenly;
     max-width: 80% !important;
 }
+
+.type-filter{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+

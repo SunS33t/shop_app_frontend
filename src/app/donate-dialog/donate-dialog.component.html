@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Пополнение баланса</h1>
+    <mat-dialog-content class="mat-typography">
+        <div class="donate">
+        <mat-form-field appearance="fill" class="md-3" standalone>
+            <mat-label>Номер карты</mat-label>
+            <input matInput [(ngModel)]="data.number">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="md-3" standalone>
+            <mat-label>Пароль</mat-label>
+            <input matInput [(ngModel)]="data.password">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="md-3" standalone>
+            <mat-label>Сумма пополнения</mat-label>
+            <input matInput [(ngModel)]="data.amount">
+          </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Закрыть</button>
+        <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Пополнить</button>
+      </mat-dialog-actions>
+</div>

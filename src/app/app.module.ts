@@ -8,6 +8,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDatepickerModule} from '@angular/material/datepicker';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { ToastrModule } from 'ngx-toastr';
@@ -45,6 +48,7 @@ import { CommentsComponent } from './product-page/comments/comments.component';
 import { AdressAddEditComponent } from './data-tables/adress/adress-add-edit/adress-add-edit.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ShopAddEditComponent } from './data-tables/shop/shop-add-edit/shop-add-edit.component';
+import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
 
 
 @NgModule({
@@ -71,7 +75,8 @@ import { ShopAddEditComponent } from './data-tables/shop/shop-add-edit/shop-add-
     CustomerCartComponent,
     CommentsComponent,
     AdressAddEditComponent,
-    ShopAddEditComponent
+    ShopAddEditComponent,
+    DonateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,11 @@ import { ShopAddEditComponent } from './data-tables/shop/shop-add-edit/shop-add-
     MatAutocompleteModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    MatDialogModule
+     
   ],
   providers: [UserService,{
     provide: HTTP_INTERCEPTORS,

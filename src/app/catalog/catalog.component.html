@@ -1,3 +1,24 @@
+<p class="type-filter">
+    <mat-button-toggle-group name="type" aria-label="Font Style">
+        <mat-button-toggle class="toggle" value="all" (change)="onValChange($event.value)" >Все</mat-button-toggle>
+        <mat-button-toggle value="2x2" (change)="onValChange($event.value)">Кубы 2 на 2</mat-button-toggle>
+        <mat-button-toggle value="3x3" (change)="onValChange($event.value)">Кубы 3 на 3</mat-button-toggle>
+        <mat-button-toggle value="cube" (change)="onValChange($event.value)">Кубы</mat-button-toggle>
+        <mat-button-toggle value="pir" (change)="onValChange($event.value)">Пирамидки</mat-button-toggle>
+        <mat-button-toggle value="mega" (change)="onValChange($event.value)">Мегаминксы</mat-button-toggle>
+        <mat-button-toggle value="sqweb" (change)="onValChange($event.value)">Скьюбы</mat-button-toggle>
+        <mat-button-toggle value="sqwaer" (change)="onValChange($event.value)">Скваеры</mat-button-toggle>
+        <mat-button-toggle value="forms" (change)="onValChange($event.value)">Изменяющие форму</mat-button-toggle>
+    </mat-button-toggle-group>
+</p>
+<p class="type-filter">
+    <mat-button-toggle-group name="sort" aria-label="Font Style">
+        <mat-button-toggle value="name" (change)="onValChangeSort($event.value)" >По названию</mat-button-toggle>
+        <mat-button-toggle value="cost-up" (change)="onValChangeSort($event.value)" >По цене &#8593;</mat-button-toggle>
+        <mat-button-toggle value="cost-down" (change)="onValChangeSort($event.value)" >По цене &#8595;</mat-button-toggle>
+    </mat-button-toggle-group>
+</p>
+
 <div class="container wraper">
     <div *ngFor="let product of productList$ | async">
         <app-product-card [product]="product"></app-product-card>

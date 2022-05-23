@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{HttpClient, HttpHeaders} from "@angular/common/http";
 import { ApiService } from './api.service';
+import { ToastrService } from 'ngx-toastr';
+import { E } from '@angular/cdk/keycodes';
+import { Observable, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private fb:FormBuilder, private http: HttpClient, private service: ApiService) { }
+  constructor(private fb:FormBuilder, private http: HttpClient, private service: ApiService,private toastr: ToastrService) { }
   readonly BaseURI = "https://localhost:44380/api"
 
   formModel = this.fb.group({
@@ -48,6 +51,41 @@ export class UserService {
 
   getUserProfile(){
     return this.http.get(this.BaseURI + '/UserProfile');
+  }
+
+  getCustomerInfo(){
+    let id = this.getCustomerId();
+    return this.http.get(this.BaseURI +`/customers/${id}`);
+  }
+
+  donate(cartNumber:number, pass:"string",amount: number){
+    this.service.getCard(cartNumber).subscribe(
+      (res:any)=>{
+        if(res.password === pass){
+          if(res.balance > amount){
+            this.getCustomerInfo().subscribe((c:any)=> {
+              let customer = c;
+              customer.balance = Number(customer.balance) + Number(amount); 
+              this.service.updateCustomer(customer.userId, customer).subscribe();
+            });
+            res.balance = Number(res.balance) - Number(amount);
+            this.service.updateCard(res.cardNumber, res).subscribe();
+          }
+          else{
+            this.toastr.error('На карте недостаточно средств','Ошибка пополнения баланса');
+          }
+        }
+        else{
+          this.toastr.error('Неверный номер карты или пароль','Ошибка пополнения баланса');
+        }    
+    },
+    err => {
+      if(err.status == 404)
+        this.toastr.error('Неверный номер карты или пароль','Ошибка пополнения баланса');
+        else
+        console.log(err);
+    }
+    );
   }
 
   roleMatch(allowedRoles: any[]): boolean {

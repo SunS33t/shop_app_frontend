@@ -33,6 +33,11 @@ export class AdminPanelComponent implements OnInit {
         label: 'Магазины',
         link: 'shops',
         index: 4
+      },
+      {
+        label: 'Заказы',
+        link: '#',
+        index: 5
       }
     ];
    }

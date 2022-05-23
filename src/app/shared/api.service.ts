@@ -210,4 +210,14 @@ export class ApiService {
     return this.http.post(this.APIUrl + '/productlists',data);
   }
   //END SHOP PRODUCTS
+
+  //CARD 
+  getCard(id: number):Observable<any>{
+    return this.http.get(this.APIUrl + `/bankaccounts/${id}`);
+  }
+  
+  updateCard(id:number, data:any){
+    return this.http.put(this.APIUrl+ `/bankaccounts/${id}`,data);
+  }
+  //END CARD
 }

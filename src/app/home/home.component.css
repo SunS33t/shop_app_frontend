@@ -1,3 +1,25 @@
+
+@font-face {
+  font-family: "Blox";
+  src: url('../fonts/Blox2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header{
+  font-family: Blox;
+  font-size: 130px;
+  line-height: 140px;
+  position: absolute;
+  top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  text-align: center;
+}
+
 .user-hello{
     margin: 0;
     margin-right: 20px;
