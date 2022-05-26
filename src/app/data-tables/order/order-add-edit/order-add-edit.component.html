@@ -1,0 +1,18 @@
+<form>
+    <div>
+        <label for="status" class="form-label">Статус</label>
+      <input type="text" class="form-control" name="status" [(ngModel)]="status" disabled>
+    </div>
+    <div class="footer">
+        <button class="btn btn-primary">Сборка заказа</button>
+        <button class="btn btn-warning">В пути</button>
+        <button class="btn btn-success">Доставлено</button>
+    </div>
+    <button (click)="addColor()" *ngIf="order.orderId==''" class="btn btn-primary">
+      Добавить
+    </button>
+    <button (click)="updateColor()" *ngIf="order.orderId!=''" class="btn btn-primary">
+      Изменить
+    </button>
+  </form>
+

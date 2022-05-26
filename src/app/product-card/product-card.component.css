@@ -23,6 +23,7 @@
 
 .btn { 
   margin-left: 10px;
+  border:1px solid;
 }
 
 .product-price {

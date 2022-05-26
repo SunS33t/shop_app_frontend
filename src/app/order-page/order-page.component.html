@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="product-table clearfix">
+        <ul class="cart-list">
+            <li class="cart-item" *ngFor="let products of this.customerCart">
+                <div class="cart-item-container"> 
+                    <img class="product-image" src="data:image/jpg;base64,{{products.product.picture}}" alt="image">
+                    {{products.product.name}}
+                    <div class="product-cost">{{products.count}} шт.</div>
+                </div>
+            </li>
+        </ul>
+        <div class="summary clearfix">Общая сумма заказа: {{this.sumCost}} у.е.</div>
+    </div>
+
+    <div class="stepper">
+        <mat-stepper linear #stepper>
+            <mat-step *ngIf="this.availableShops.length != 0" [stepControl]="shopFormGroup">
+              <form [formGroup]="shopFormGroup">
+                <ng-template matStepLabel>Выбор пункта выдачи</ng-template>
+                <div >
+                <div>Выберите магазин из списка доступных магазинов</div>
+                <mat-form-field appearance="fill">
+                    <mat-select formControlName="shop" [errorStateMatcher]="matcher">
+                      <mat-option *ngFor="let item of this.availableShops" [value]="item.adress">{{item.shopName}} - {{item.adress.city}},{{item.adress.street}} - {{item.adress.homeNumber}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="selected.hasError('required')">Необходимо выбрать пункт выдачи</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <button mat-button matStepperNext>Дальше</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step *ngIf="this.availableShops.length == 0" [stepControl]="useraddressFormGroup">
+                <form [formGroup]="useraddressFormGroup">
+                  <ng-template matStepLabel>Выберите адрес доставки</ng-template>
+                      <div>К сожалению не нашлось магазинов, в которых имеются все товары, которые вы хотите заказать, но вы все еще можете выбрать доставку на дом!</div>
+                      <div class="customer-address">
+                      <mat-form-field appearance="fill">
+                          <mat-label>Город</mat-label>
+                          <input matInput placeholder="Город" formControlName="city" required>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                          <mat-label>Улица</mat-label>
+                          <input matInput placeholder="Улица" formControlName="street" required>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                          <mat-label>Номер дома</mat-label>
+                          <input matInput placeholder="Номер дома" formControlName="number" required>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                        <mat-label>Дополнительная информация</mat-label>
+                        <input matInput placeholder="Дополнительная информация" formControlName="additional" required>
+                    </mat-form-field>
+                </div>
+                  <div>
+                    <button mat-button matStepperNext>Дальше</button>
+                  </div>
+                </form>
+              </mat-step>
+
+            <mat-step [stepControl]="checkFormGroup">
+              <form [formGroup]="checkFormGroup">
+                <ng-template matStepLabel>Проверка данных</ng-template>
+                  <div class="order-info">
+                    <div *ngIf="this.shopFormGroup.controls['shop'].value" class="pick-point">
+                      <h1>Информация о пункте выдачи <mat-icon> location_on</mat-icon></h1>
+                      <mat-icon>location_city</mat-icon> Город: {{this.shopFormGroup.controls['shop'].value.city}} <br>
+                      <mat-icon> streetview</mat-icon> Улица: {{this.shopFormGroup.controls['shop'].value.street}}<br>
+                      <mat-icon>home</mat-icon> Номер дома: {{this.shopFormGroup.controls['shop'].value.homeNumber}}<br>
+                    </div>
+                    <div *ngIf="this.useraddressFormGroup.controls['city'].value" class="pick-point" >
+                      <h1>Информация о месте доставки</h1>
+                      <mat-icon>location_city</mat-icon> Город: {{this.useraddressFormGroup.controls['city'].value}} <br>
+                      <mat-icon> streetview</mat-icon> Улица: {{this.useraddressFormGroup.controls['street'].value}}<br>
+                      <mat-icon>home</mat-icon> Номер дома: {{this.useraddressFormGroup.controls['number'].value}}<br>
+                      <mat-icon>info</mat-icon> Дополнительная информация: {{this.useraddressFormGroup.controls['additional'].value}}<br>
+                    </div>
+                    <div class="about-order">
+                      <h1> Информация о заказе <mat-icon>shopping_cart</mat-icon></h1>
+                      <mat-icon> attach_money</mat-icon> Сумма заказа: {{this.sumCost}} у.е.<br>
+                      <mat-icon> email</mat-icon> Email для чека: {{this.customer.email}}<br>
+                    </div>
+                  </div>
+                  <mat-checkbox formControlName="checkCtrl" class="check" color="primary">Данные корректны</mat-checkbox>
+                <div>
+                  <button mat-button matStepperPrevious>Назад</button>
+                  <button mat-button matStepperNext>Дальше</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Подтверждение заказа</ng-template>
+              <p>Заказ готов к подтверждению</p>
+              <div>
+                <button mat-button matStepperPrevious>Назад</button>
+                <button mat-button (click)="this.order()">Заказать</button>
+              </div>
+            </mat-step>
+          </mat-stepper>
+    </div>
+</div>

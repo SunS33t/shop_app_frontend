@@ -2,7 +2,7 @@
  <!-- Картинка -->
     <div class="mb-3" *ngIf=!this.picture>
       <label for="picture" class="form-label">Картинка</label>
-      <input type="file" class="form-control" name="picture" (change)="onSelectFile($event)" >
+      <input type="file" class="form-control image-load" name="picture" (change)="onSelectFile($event)" >
     </div>
     <div class="mb-3" *ngIf=this.picture>
       <img src="data:image/jpg;base64,{{picture}}" height="100px">
@@ -31,7 +31,7 @@
     <!-- Описание -->
     <div class="mb-3">
         <label for="description" class="form-label">Описание</label>
-        <input type="text" class="form-control" [(ngModel)]="description" name="description">
+        <textarea type="text" class="form-control" [(ngModel)]="description" name="description"> </textarea>
     </div>
     <!-- Вес -->
     <div class="mb-3">

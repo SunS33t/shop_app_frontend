@@ -11,6 +11,8 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 import { ToastrModule } from 'ngx-toastr';
@@ -49,6 +51,11 @@ import { AdressAddEditComponent } from './data-tables/adress/adress-add-edit/adr
 import { MatNativeDateModule } from '@angular/material/core';
 import { ShopAddEditComponent } from './data-tables/shop/shop-add-edit/shop-add-edit.component';
 import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { CustomerOrdersPageComponent } from './customer-orders-page/customer-orders-page.component';
+import { OrderComponent } from './data-tables/order/order.component';
+import { OrderAddEditComponent } from './data-tables/order/order-add-edit/order-add-edit.component';
 
 
 @NgModule({
@@ -76,7 +83,12 @@ import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
     CommentsComponent,
     AdressAddEditComponent,
     ShopAddEditComponent,
-    DonateDialogComponent
+    DonateDialogComponent,
+    OrderPageComponent,
+    OrderSuccessComponent,
+    CustomerOrdersPageComponent,
+    OrderComponent,
+    OrderAddEditComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +114,9 @@ import { DonateDialogComponent } from './donate-dialog/donate-dialog.component';
     MatNativeDateModule,
     MatButtonToggleModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule,
+    MatCheckboxModule
      
   ],
   providers: [UserService,{

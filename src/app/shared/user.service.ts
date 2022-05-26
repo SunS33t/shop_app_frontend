@@ -88,6 +88,15 @@ export class UserService {
     );
   }
 
+
+  pay(amount: number){
+    this.getCustomerInfo().subscribe((c:any)=> {
+      let customer = c;
+      customer.balance = Number(customer.balance) - Number(amount); 
+      this.service.updateCustomer(customer.userId, customer).subscribe();
+    });
+  }
+
   roleMatch(allowedRoles: any[]): boolean {
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     var userRole = payLoad.role;
@@ -134,6 +143,15 @@ export class UserService {
       else{
         this.service.deleteProductFromCart(customerId, productId).subscribe();
       }
+    });
+  }
+
+  clearCart(){
+    var customerId = this.getCustomerId();
+    this.service.getCustomer(customerId).subscribe(customer => {
+      customer.customerCarts.forEach((element:any) => {
+        this.service.deleteProductFromCart(element.userId, element.productId).subscribe();
+      });
     });
   }
 

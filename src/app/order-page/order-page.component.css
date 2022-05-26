@@ -1,0 +1,61 @@
+
+.product-table{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.cart-item{
+    border-bottom: 1px solid black;
+
+}
+
+.cart-list{
+    list-style: none;
+    font-size: 30px;
+}
+
+.product-image{
+    padding: 10px;
+    width: 150px;
+}
+
+.product-cost{
+    float:right;
+    display: flex;
+    align-items: center;
+    height: 120px;
+    color:#36427c;
+    font-size: 70px;
+}
+
+.summary{
+    float: right;
+    font-size: 30px;
+}
+
+.stepper{
+    margin-top: 20px;
+}
+
+.customer-address{
+    display: grid;
+    width: 70%;
+}
+
+.check{
+    margin-top: 20px;
+}
+
+.order-info, .check{
+    line-height: 30px;
+    font-size: 25px;
+}
+
+.pick-point, .about-order{
+   border-bottom: 1px solid black;
+   margin-bottom: 10px; 
+}
+
+.order-info h1{
+    font-weight: bold;
+    border-bottom: 1px dashed black;
+}

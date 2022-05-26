@@ -56,8 +56,15 @@ body {
   align-items: center;
 }
 .content p {
-  font-size: 12px;
+  font-size: 15px;
 }
+
+.cost{
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .ratings span {
   font-size: 14px;
   margin-left: 12px;
@@ -81,6 +88,10 @@ body {
 
 .right-side {
   position: relative;
+}
+
+.name{
+  font-size: 30px;
 }
 
 .circle{

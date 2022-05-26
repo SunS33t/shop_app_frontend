@@ -36,7 +36,7 @@ export class AdminPanelComponent implements OnInit {
       },
       {
         label: 'Заказы',
-        link: '#',
+        link: 'orders',
         index: 5
       }
     ];

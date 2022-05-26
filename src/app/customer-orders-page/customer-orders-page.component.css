@@ -1,0 +1,29 @@
+.order-container{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: stretch;
+    font-size: 20px;
+}
+
+.products{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.order-status{
+    border-left: 1px solid black;
+    border-right: 3px solid rgb(0, 0, 0);
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    background-color: rgb(80, 132, 227);
+}

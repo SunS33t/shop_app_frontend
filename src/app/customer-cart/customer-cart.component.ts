@@ -26,6 +26,10 @@ export class CustomerCartComponent implements OnInit {
     });
   }
 
+  clearCart(){
+    this.userService.clearCart();
+  }
+
   minusProduct(productId:string){
     if(this.productCounts.get(productId) > 1){
       this.userService.removeFromCart(productId);

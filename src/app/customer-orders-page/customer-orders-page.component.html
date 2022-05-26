@@ -1,0 +1,17 @@
+<div class="container">
+<div *ngFor="let order of this.orders">
+<div class="order-container">
+    <div class="products">
+        <div *ngFor="let product of order.products">
+        {{product.product.name}}: {{product.count}} шт. 
+        </div> 
+        <hr>
+        Адресс доставки: Самара, Стара Загора 175
+    </div>
+    <div class="order-status">
+        {{order.status}}
+    </div>
+</div>
+    
+</div>
+</div>

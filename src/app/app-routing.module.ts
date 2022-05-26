@@ -17,6 +17,10 @@ import { ProductComponent } from './data-tables/product/product.component';
 import { ShopComponent } from './data-tables/shop/shop.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { CustomerCartComponent } from './customer-cart/customer-cart.component';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { CustomerOrdersPageComponent } from './customer-orders-page/customer-orders-page.component';
+import { OrderComponent } from './data-tables/order/order.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/user/login', pathMatch:'full'},
@@ -32,7 +36,7 @@ const routes: Routes = [
       {path:'admin-panel', component:AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}, 
         children: [
           {path:'addresses', component:AdressComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
-          {path:'clients', component:ClientComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
+          {path:'orders', component:OrderComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
           {path:'colors', component:ColorComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
           {path:'manufacturers', component:ManufacturerComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
           {path:'products', component:ProductComponent, canActivate:[AuthGuard], data: {permittedRoles:['Admin']}},
@@ -40,11 +44,12 @@ const routes: Routes = [
         ]},
       {path:'catalog', component:CatalogComponent, canActivate:[AuthGuard], data: {permittedRoles:['Customer']}},
       {path:'cart', component:CustomerCartComponent, canActivate:[AuthGuard], data: {permittedRoles:['Customer']}},
-
-      {path:'product-details/:id', component:ProductPageComponent, canActivate:[AuthGuard], data: {permittedRoles:['Customer']},pathMatch: 'full'}
-
+      {path:'order',component:OrderPageComponent, canActivate:[AuthGuard],data:{permittedRoles:['Customer']}},
+      {path:'product-details/:id', component:ProductPageComponent, canActivate:[AuthGuard], data: {permittedRoles:['Customer']},pathMatch: 'full'},
+      {path:'order-list', component:CustomerOrdersPageComponent, canActivate:[AuthGuard], data: {permittedRoles:['Customer']}},
     ]},
   {path:'forbidden', component:ForbiddenComponent},
+  {path:'order-success',component:OrderSuccessComponent, canActivate:[AuthGuard],data:{permittedRoles:['Customer']}}
  
   
 ];

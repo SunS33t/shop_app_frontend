@@ -1,6 +1,7 @@
 <div class="CartContainer">
     <div class="Header">
         <h3 class="Heading">Корзина</h3>
+        <button class="btn btn-danger" (click)="this.clearCart()"><mat-icon style="color:red">delete</mat-icon></button>
     </div>
 
     <div *ngFor="let product of this.cart" class="Cart-Items">
@@ -29,7 +30,7 @@
       </div>
       <div class="total-amount">{{getSumPrice()}} у.е.</div>
   </div>
-  <button class="button">Оформить заказ</button></div>
+  <a routerLink="../order"><button class="button">Оформить заказ</button></a></div>
 </div>
 
 

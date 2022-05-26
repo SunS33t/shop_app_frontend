@@ -138,7 +138,7 @@ export class ApiService {
   deleteProductFromCart(userId: string, productId: string) {
     return this.http.delete(
       this.APIUrl +
-        `/customercarts/${userId}%2${productId}?u_id=${userId}&&p_id=${productId}`
+        `/customercarts?u_id=${userId}&p_id=${productId}`
     );
   }
   //end add to cart
@@ -220,4 +220,31 @@ export class ApiService {
     return this.http.put(this.APIUrl+ `/bankaccounts/${id}`,data);
   }
   //END CARD
+
+  //ORDER
+  addOrder(data: any) {
+    return this.http.post(this.APIUrl + '/orders', data);
+  }
+  getOrderList(): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/orders');
+  }
+
+  getOrder(id: number | string): Observable<any> {
+    return this.http.get<any>(this.APIUrl + `/orders/${id}`);
+  }
+
+  updateOrder(id: string, data: any) {
+    return this.http.put(this.APIUrl + `/orders/${id}`, data);
+  }
+
+  deleteOrder(id: number | string) {
+    return this.http.delete(this.APIUrl + `/orders/${id}`);
+  }
+  //END ORDER
+
+  //ORDERLIST
+  getOrderProductList(id:string):Observable<any[]>{
+    return this.http.get<any>(this.APIUrl + `/orderlists/${id}`);
+  }
+  //END ORDER LIST
 }

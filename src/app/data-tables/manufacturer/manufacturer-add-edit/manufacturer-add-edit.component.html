@@ -1,7 +1,7 @@
 <form>
     <div *ngIf="!this.brandLogo" class="mb-3">
-      <label for="brandLogo" class="form-label">Логотип</label>
-      <input type="file" class="form-control" name="brandLogo" (change)="onSelectFile($event)" >
+      <label for="brandLogo" class="form-label" >Логотип</label>
+      <input type="file" class="form-control image-load" name="brandLogo" (change)="onSelectFile($event)">
       
     </div>
     <img *ngIf="this.brandLogo" src="data:image/jpg;base64,{{this.brandLogo}}" height="50px" width="50px">
