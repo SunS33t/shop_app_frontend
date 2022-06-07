@@ -209,6 +209,10 @@ export class ApiService {
   addProductToShop(data: any){
     return this.http.post(this.APIUrl + '/productlists',data);
   }
+
+  deleteAllProductsFromShop(id:string){
+    return this.http.delete(this.APIUrl + `/productlists/${id}`);
+  }
   //END SHOP PRODUCTS
 
   //CARD 

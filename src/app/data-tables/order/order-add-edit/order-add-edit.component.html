@@ -4,14 +4,11 @@
       <input type="text" class="form-control" name="status" [(ngModel)]="status" disabled>
     </div>
     <div class="footer">
-        <button class="btn btn-primary">Сборка заказа</button>
-        <button class="btn btn-warning">В пути</button>
-        <button class="btn btn-success">Доставлено</button>
+        <button class="btn btn-primary" (click)="this.setStatus('Сборка заказа')">Сборка заказа</button>
+        <button class="btn btn-warning" (click)="this.setStatus('В пути')">В пути</button>
+        <button class="btn btn-success" (click)="this.setStatus('Доставлено')">Доставлено</button>
     </div>
-    <button (click)="addColor()" *ngIf="order.orderId==''" class="btn btn-primary">
-      Добавить
-    </button>
-    <button (click)="updateColor()" *ngIf="order.orderId!=''" class="btn btn-primary">
+    <button (click)="updateOrder()" *ngIf="order.orderId!=''" class="btn btn-primary">
       Изменить
     </button>
   </form>

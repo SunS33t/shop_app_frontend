@@ -36,16 +36,6 @@ export class OrderPageComponent implements OnInit {
   selected = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
   matcher = new MyErrorStateMatcher();
 
-  /* 
-    TODO:  Доделать вывод данных в форме проверки, сделать чекбокс
-    TODO:  Проверка баланса при совершении покупки
-    TODO:  Если покупка проходит: очистить корзину, минус баланс, перекинуть на страницу "Спасибо за покупку"
-    TODO:  Добавить наполнению на вкладку "Мои заказы"
-    ??     Добвить *ngIf для потенциально пустых мест(корзина)
-    TODO:  Добавить таблицу с заказами для администратора
-    ??     Стилизация подробной информации
-  */
-
   constructor(private guider:GuidGeneratorService, private router:Router ,private _formBuilder: FormBuilder,private service: ApiService, private userService: UserService, public toastr: ToastrService) { }
 
   ngOnInit(): void {

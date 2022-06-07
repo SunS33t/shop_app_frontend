@@ -1,10 +1,10 @@
-<mat-card class="example-card">
+<mat-card class="example-card item">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"><img class="card-logo"src="data:image/jpg;base64,{{this.brandLogo}}" alt=""></div>
       <mat-card-title>{{product.name}}</mat-card-title>
       <mat-card-subtitle>{{this.brandName}}</mat-card-subtitle>
     </mat-card-header>
-    <img class="mat-card-image" mat-card-image src="data:image/jpg;base64,{{product.picture}}" alt="Photo of a Shiba Inu">
+    <img class="mat-card-image" mat-card-image src="data:image/jpg;base64,{{product.picture}}" alt="Photo of a product">
     <mat-card-content>
       <p class="product-price">
        Цена: {{product.cost}} у.е.
@@ -12,6 +12,6 @@
     </mat-card-content>
     <mat-card-actions>
       <a [routerLink]="['../product-details', product.productId]"><button mat-button class="btn btn-info">Больше информации</button></a>
-      <button mat-button class="btn btn-success" (click)="this.addToCart()">Добавить в корзину</button>
+      <button mat-button class="btn btn-success add-to-cart" (click)="this.addToCart()">Добавить в корзину</button>
     </mat-card-actions>
-  </mat-card>
+</mat-card>

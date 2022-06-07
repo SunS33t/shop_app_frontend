@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../shared/api.service';
@@ -27,7 +28,5 @@ export class ProductCardComponent implements OnInit {
   addToCart(){
     this.userService.addToCart(this.product.productId);
   }
-
-
 
 }

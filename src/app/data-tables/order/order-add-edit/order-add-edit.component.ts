@@ -15,17 +15,41 @@ export class OrderAddEditComponent implements OnInit {
   userId: string = "";
   adressId: string = "";
   status: string = "";
+
   ngOnInit(): void {
     this.userId = this.order.userId;
     this.adressId = this.order.adressId;
     this.status = this.order.status;
   }
 
-  addColor(){
-    
+  updateOrder(){
+    var order = {
+      orderId: this.order.orderId,
+      userId: this.userId,
+      adressId: this.adressId,
+      status: this.status
+    }
+    var id:string = this.order.orderId;
+    this.service.updateOrder(id,order).subscribe(res=>{
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if(closeModalBtn) {
+        closeModalBtn.click();
+      }
+
+      var showUpdateSuccess = document.getElementById('update-success-alert');
+      if(showUpdateSuccess) {
+        showUpdateSuccess.style.display = "block";
+      }
+      setTimeout(function() {
+        if(showUpdateSuccess) {
+          showUpdateSuccess.style.display = "none"
+        }
+      }, 4000);
+
+    });
   }
 
-  updateColor(){
-   
+  setStatus(status: string){
+    this.status = status;
   }
 }

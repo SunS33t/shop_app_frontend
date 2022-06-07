@@ -4,7 +4,7 @@
     <ul class="navbar-nav">
         <li *ngIf="checkAdminRole()" class="nav-item" > <a class="nav-link" routerLink="admin-panel">Панель Администратора</a> </li>
         <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link" routerLink="catalog">Каталог</a></li>
-        <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link" routerLink="cart">Корзина</a></li>
+        <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link shopping-cart" routerLink="cart">Корзина</a></li>
         <li *ngIf="checkCustomerRole()" class="nav-item" > <a class="nav-link" routerLink="order-list">Мои заказы</a></li>
     </ul> 
 </div>

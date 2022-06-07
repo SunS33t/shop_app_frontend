@@ -6,7 +6,7 @@
         {{product.product.name}}: {{product.count}} шт. 
         </div> 
         <hr>
-        Адресс доставки: Самара, Стара Загора 175
+        {{this.adressMap.get(order.addressId)}}
     </div>
     <div class="order-status">
         {{order.status}}
